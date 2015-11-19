@@ -42,7 +42,35 @@ tinder.login()
 
 ```
 
-If you are not using browserify/webpack/etc, you can add a script-tag pointing to the file in `dist/`.
+If you are not using browserify/webpack/etc, you can add a script-tag pointing to the file in `dist/` and leave off the require.
+
+## api
+
+All of these return a Promise.
+
+### tinder.login()
+login with facebook, opens a new window
+
+### tinder.recommendations()
+get recommendations from tinder
+
+### tinder.message(userid, messsage)
+send a tinder message
+
+### tinder.pass(userid)
+swipe left
+
+### tinder.like(userid)
+swipe right
+
+### tinder.history()
+Gets the entire history for the user (all matches, messages, blocks, etc.)
+
+### tinder.position(lon, lat)
+Updates the position for this user
+
+### tinder.user(userid)
+Get user by id
 
 ## credit
 

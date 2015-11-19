@@ -1,0 +1,30 @@
+{
+  "name": "tinderjs",
+  "version": "0.0.1",
+  "description": "A tinder API client that uses `fetch` and works in modern browsers, nodejs & react-native.",
+  "main": "index.js",
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "isomorphic-fetch": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konsumer/jstinder.git"
+  },
+  "keywords": [
+    "tinder",
+    "node",
+    "reat",
+    "react-native"
+  ],
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konsumer/jstinder/issues"
+  },
+  "homepage": "https://github.com/konsumer/jstinder#readme"
+}

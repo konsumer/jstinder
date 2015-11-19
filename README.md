@@ -26,7 +26,7 @@ tinder.login()
 If you are using ES5 in node/browserify, it would look like this:
 
 ```js
-var tinder = require('tinder')
+var tinder = require('tinderjs')
 
 tinder.login()
   .then(function (me) {
@@ -42,7 +42,7 @@ tinder.login()
 
 ```
 
-If you are not using browserify/webpack/etc, you can add a script-tag pointing to the file in `dist/` and leave off the require.
+If you are not using browserify/webpack/etc, you can add a script-tag pointing to the file `dist/tinderjs.min.js` and leave off the require.
 
 ## api
 

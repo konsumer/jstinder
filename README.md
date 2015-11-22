@@ -1,6 +1,6 @@
 # tinderjs
 
-A tinder API client that uses `fetch` and works in modern browsers, nodejs & react-native.
+A tinder API client that uses `fetch` and works in nodewebkit, electron, nodejs & react-native.
 
 ## usage
 
@@ -23,7 +23,7 @@ tinder.login()
   })
 ```
 
-If you are using ES5 in node/browserify, it would look like this:
+If you are using ES5 in atom/nodewebkit, it would look like this:
 
 ```js
 var tinder = require('tinderjs')
@@ -42,14 +42,17 @@ tinder.login()
 
 ```
 
-If you are not using browserify/webpack/etc, you can add a script-tag pointing to the file `dist/tinderjs.min.js` and leave off the require.
+You can see more demos in the `demos/` dir.
 
 ## api
 
 All of these return a Promise.
 
+### tinder.auth(fbtoken, fbid)
+authenticate tinder client with facebook auth token & id
+
 ### tinder.login()
-login with facebook, opens a new window
+login with facebook, opens a new window (requires browser window like nodewebkit or atom that can watch for changes on child window)
 
 ### tinder.recommendations()
 get recommendations from tinder

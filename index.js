@@ -1,5 +1,9 @@
-require('es6-promise').polyfill()
-require('isomorphic-fetch')
+if (typeof(Promise) === 'undefined') {
+  require('es6-promise').polyfill()
+}
+if (typeof(fetch) === 'undefined') {
+  require('isomorphic-fetch')
+}
 
 // fetch doesn't throw on bad status.
 function checkStatus(response) {

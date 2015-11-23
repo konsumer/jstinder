@@ -1,12 +1,12 @@
-if (typeof(Promise) === 'undefined') {
+if (typeof Promise === 'undefined') {
   require('es6-promise').polyfill()
 }
-if (typeof(fetch) === 'undefined') {
-  var f = require('isomorphic-fetch')
+if (typeof fetch === 'undefined') {
+  require('isomorphic-fetch')
 }
 
 // fetch doesn't throw on bad status.
-function checkStatus(response) {
+function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
@@ -17,13 +17,13 @@ function checkStatus(response) {
 }
 
 // convenience function: return JSON response
-function parseJSON(response) {
+function parseJSON (response) {
   return response.json()
 }
 
 // convenience function: just results, please
-function getResults(response) {
-  if (!response.results){
+function getResults (response) {
+  if (!response.results) {
     var error = new Error('No results')
     error.response = response
     throw error
@@ -32,18 +32,18 @@ function getResults(response) {
 }
 
 var headers = {
-  'User-Agent' : 'Tinder Android Version 2.2.3',
-  'os_version' : '16',
+  'User-Agent': 'Tinder Android Version 2.2.3',
+  'os_version': '16',
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }
 
 // simple fetch GET for tinder
-function get(endpoint) {
+function get (endpoint) {
   // console.log('GET', endpoint, headers)
   return fetch('https://api.gotinder.com/' + endpoint, {
     method: 'GET',
-    headers: typeof(Headers) === 'undefined' ? headers : new Headers(headers)
+    headers: typeof Headers === 'undefined' ? headers : new Headers(headers)
   })
     .then(checkStatus)
     .then(parseJSON)
@@ -54,7 +54,7 @@ function post(endpoint, data) {
   // console.log('POST', endpoint, data, headers)
   return fetch('https://api.gotinder.com/' + endpoint, {
     method: 'POST',
-    headers: typeof(Headers) === 'undefined' ? headers : new Headers(headers),
+    headers: typeof Headers === 'undefined' ? headers : new Headers(headers),
     body: JSON.stringify(data)
   })
     .then(checkStatus)
@@ -79,7 +79,7 @@ client.login = function () {
           .then(function (me) {
             me.token = t[1]
             client.auth(me.token, me.id)
-              .then(function(){
+              .then(function () {
                 resolve(me)
               })
               .catch(reject)
@@ -96,7 +96,7 @@ client.auth = function (fbToken, fbId) {
     facebook_token: fbToken,
     facebook_id: fbId
   })
-    .then(function(json) {
+    .then(function (json) {
       headers['X-Auth-Token'] = json.token
       client.token = json.token
     })
@@ -108,7 +108,7 @@ client.recommendations = function () {
 }
 
 // send a tinder message
-client.message = function (userId, messsage) {
+client.message = function (userId, message) {
   return post('user/matches/' + userId, {message: message})
 }
 
@@ -135,7 +135,7 @@ client.like = function (userId) {
 
 // Gets the entire history for the user (all matches, messages, blocks, etc.)
 client.history = function () {
-  return post('updates', {last_activity_date: ""})
+  return post('updates', {last_activity_date: ''})
 }
 
 module.exports = client

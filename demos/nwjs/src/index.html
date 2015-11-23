@@ -1,7 +1,68 @@
 <meta charset="UTF-8" />
-<title>SimpleTinder</title>
-<div id="app"></div>
+<title>NW.js Demo</title>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  .pic{
+    float:left;
+    margin:10px;
+  }
+  ul {
+    padding:0;
+  }
+  li {
+    list-style:none;
+    padding:0;
+    margin: 10px 0;
+    clear:both;
+  }
+</style>
+
+<div id="app">Please wait...</div>
+<script id="rec" type="text/x-handlebars-template">
+<ul>
+  {{#each recomendations}}
+    <li>
+      <div class="pic" style="height: {{photos.0.processedFiles.3.height}}; width: {{photos.0.processedFiles.3.width}}; background-image: url({{photos.0.processedFiles.3.url}})"></div>
+      <div class="name">{{name}} - {{getAge birth_date}}</div>
+      <div class="bio">{{bio}}</div>
+    </li>
+  {{/each}}
+</ul>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script>
-require('babel-core/register')
-require('./index.jsx')
+var gui = require('nw.gui')
+var win = gui.Window.get()
+// win.showDevTools()
+
+// make copy/paste work on OSX
+var nativeMenuBar = new gui.Menu({ type: 'menubar' })
+try {
+  nativeMenuBar.createMacBuiltin('NW.js Demo')
+  win.menu = nativeMenuBar
+} catch (ex) {
+  console.log(ex.message)
+}
+
+var tinder = require('../../..')
+
+var tplRec = Handlebars.compile(document.getElementById('rec').innerHTML)
+
+Handlebars.registerHelper('getAge', function(date) {
+  var birthday = new Date(date)
+  var ageDifMs = Date.now() - birthday.getTime()
+  var ageDate = new Date(ageDifMs)
+  return Math.abs(ageDate.getUTCFullYear() - 1970)
+})
+
+tinder.login()
+  .then(function (me) {
+    tinder.recommendations()
+      .then(function (recomendations) {
+        document.getElementById('app').innerHTML = tplRec({recomendations: recomendations})
+      })
+  })
+
 </script>

@@ -3,17 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "main": "index.html",
-  "dependencies": {
-    "babel-core": "^6.2.1",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
-    ]
+  "window":{
+    "toolbar": true
   }
 }

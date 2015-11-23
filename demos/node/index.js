@@ -9,7 +9,7 @@ tinder.auth(settings.token, settings.id)
   .then(function(){
     tinder.recommendations()
       .then(function (recommendations) {
-        console.log(JSON.stringify(recomendations, null, 2))
+        console.log('recommendations', JSON.stringify(recomendations, null, 2))
       })
       .catch(function (err) {
         console.error('recommendations Error: ' + err.response.statusText)
@@ -18,5 +18,9 @@ tinder.auth(settings.token, settings.id)
   })
   .catch(function (err) {
     console.error('Auth Error: ' + err.response.statusText)
-    console.log(JSON.stringify(err, null, 2))
+    err.response.json()
+      .then(function(r){
+        console.log(r);
+      })
   })
+  

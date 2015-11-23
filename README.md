@@ -1,4 +1,4 @@
-# tinderjs
+# jstinder
 
 A tinder API client that uses `fetch` and works in nodewebkit, electron, nodejs & react-native.
 
@@ -7,7 +7,7 @@ A tinder API client that uses `fetch` and works in nodewebkit, electron, nodejs 
 If you are using ES6 or react-native, it would look like this:
 
 ```js
-import tinder from 'tinderjs'
+import tinder from 'jstinder'
 
 tinder.login()
   .then((me) => {
@@ -26,7 +26,7 @@ tinder.login()
 If you are using ES5 in atom/nodewebkit, it would look like this:
 
 ```js
-var tinder = require('tinderjs')
+var tinder = require('jstinder')
 
 tinder.login()
   .then(function (me) {

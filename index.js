@@ -21,7 +21,7 @@ function parseJSON(response) {
   return response.json()
 }
 
-// just results, please
+// convenience function: just results, please
 function getResults(response) {
   if (!response.results){
     var error = new Error('No results')
@@ -78,7 +78,11 @@ client.login = function () {
           })
           .then(function (me) {
             me.token = t[1]
-            resolve(me)
+            client.auth(me.token, me.id)
+              .then(function(){
+                resolve(me)
+              })
+              .catch(reject)
           })
           .catch(reject)
       }
@@ -93,7 +97,8 @@ client.auth = function (fbToken, fbId) {
     facebook_id: fbId
   })
     .then(function(json) {
-      headers['X-Auth-Token'] = json.token;
+      headers['X-Auth-Token'] = json.token
+      client.token = json.token
     })
 }
 

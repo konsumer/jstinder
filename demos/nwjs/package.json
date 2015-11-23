@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nwbuild -v 0.12.3 -r site",
-    "build": "nwbuild -v 0.12.3 -p win32,win64,osx64,linux32,linux64 site"
+    "start": "nwbuild -v 0.12.3 -r src",
+    "build": "nwbuild -v 0.12.3 -p win32,win64,osx64,linux32,linux64 src"
   },
   "devDependencies": {
     "nw-builder": "^2.0.2"

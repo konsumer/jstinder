@@ -1,5 +1,5 @@
 {
-  "name": "tinderjs",
+  "name": "jstinder",
   "version": "0.0.1",
   "description": "A tinder API client that uses `fetch` and works in modern browsers, nodejs & react-native.",
   "main": "index.js",

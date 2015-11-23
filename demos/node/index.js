@@ -5,22 +5,34 @@ var tinder = require('../../')
 // in headless nodejs, you can't login with facebook, so you need to set your facebook ID & token
 var settings = require('./settings.json')
 
+
+// boring old error-handler
+function err(e){
+  console.error(e)
+}
+
 tinder.auth(settings.token, settings.id)
   .then(function(){
     tinder.recommendations()
       .then(function (recommendations) {
-        console.log('recommendations', JSON.stringify(recomendations, null, 2))
-      })
-      .catch(function (err) {
-        console.error('recommendations Error: ' + err.response.statusText)
-        console.log(JSON.stringify(err, null, 2))
-      })
-  })
-  .catch(function (err) {
-    console.error('Auth Error: ' + err.response.statusText)
-    err.response.json()
-      .then(function(r){
-        console.log(r);
-      })
-  })
+        console.log('recommendations', recommendations)
+
+        tinder.user(recommendations[0]['_id'])
+          .then(function(user){
+            console.log('user', user)
+          }, err)
+
+        tinder.like(recommendations[0]['_id'])
+          .then(function(l){
+            console.log('like', l)
+          }, err)
+
+        tinder.history()
+          .then(function (history) {
+            console.log('history', history)
+          }, err)
+
+
+      }, err)
+  }, err)
   

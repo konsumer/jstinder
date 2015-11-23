@@ -21,6 +21,16 @@ function parseJSON(response) {
   return response.json()
 }
 
+// just results, please
+function getResults(response) {
+  if (!response.results){
+    var error = new Error('No results')
+    error.response = response
+    throw error
+  }
+  return response.results
+}
+
 var headers = {
   'User-Agent' : 'Tinder Android Version 2.2.3',
   'os_version' : '16',
@@ -30,6 +40,7 @@ var headers = {
 
 // simple fetch GET for tinder
 function get(endpoint) {
+  // console.log('GET', endpoint, headers)
   return fetch('https://api.gotinder.com/' + endpoint, {
     method: 'GET',
     headers: typeof(Headers) === 'undefined' ? headers : new Headers(headers)
@@ -40,6 +51,7 @@ function get(endpoint) {
 
 // simple fetch POST for tinder
 function post(endpoint, data) {
+  // console.log('POST', endpoint, data, headers)
   return fetch('https://api.gotinder.com/' + endpoint, {
     method: 'POST',
     headers: typeof(Headers) === 'undefined' ? headers : new Headers(headers),
@@ -87,7 +99,7 @@ client.auth = function (fbToken, fbId) {
 
 // get recommendations from tinder
 client.recommendations = function () {
-  return get('user/recs')
+  return get('user/recs').then(getResults)
 }
 
 // send a tinder message
@@ -96,13 +108,14 @@ client.message = function (userId, messsage) {
 }
 
 // Updates the position for this user
+// TODO: can I save other stuff in here?
 client.position = function (lon, lat) {
   return post('user/ping', { lon: lon, lat: lat })
 }
 
 // Get user by id
 client.user = function (userId) {
-  return get('user/' + userId)
+  return get('user/' + userId).then(getResults)
 }
 
 // swipe left

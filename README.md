@@ -12,7 +12,8 @@ import tinder from 'jstinder'
 tinder.login()
   .then((me) => {
     // `me` is facebook profile for you
-    tinder.recommendations()
+    tinder.auth(me.token, me.id)
+      .then(tinder.recommendations)
       .then((recommendations) => {
         // handle recommendations
       }, (err) => {
@@ -30,7 +31,8 @@ var tinder = require('jstinder')
 
 tinder.login()
   .then(function (me) {
-    tinder.recommendations()
+    tinder.auth(me.token, me.id)
+      .then(tinder.recommendations)
       .then(function (recommendations) {
 
       }, function (err) {

@@ -78,11 +78,7 @@ client.login = function () {
           })
           .then(function (me) {
             me.token = t[1]
-            client.auth(me.token, me.id)
-              .then(function () {
-                resolve(me)
-              })
-              .catch(reject)
+            resolve(me)
           })
           .catch(reject)
       }

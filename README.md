@@ -12,14 +12,13 @@ import tinder from 'jstinder'
 tinder.login()
   .then((me) => {
     // `me` is facebook profile for you
-    tinder.auth(me.token, me.id)
+    return tinder.auth(me.token, me.id)
       .then(tinder.recommendations)
       .then((recommendations) => {
         // handle recommendations
-      }, (err) => {
-        // handle err here
       })
-  }, (err) => {
+  })
+  .catch(err) => {
     // handle err here
   })
 ```

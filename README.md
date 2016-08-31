@@ -24,7 +24,7 @@ tinder.login()
   })
 ```
 
-If you are using ES5 in atom/nodewebkit, it would look like this:
+If you are using ES5 in electron/nwjs, it would look like this:
 
 ```js
 var tinder = require('jstinder')

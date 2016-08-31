@@ -4,7 +4,7 @@ A tinder API client that uses `fetch` and works in nodewebkit, electron, nodejs 
 
 ## usage
 
-If you are using ES6 or react-native, it would look like this:
+If you are using ES6, it would look like this:
 
 ```js
 import tinder from 'jstinder'

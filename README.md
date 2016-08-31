@@ -4,7 +4,7 @@ A tinder API client that uses `fetch` and works in nodewebkit, electron, nodejs 
 
 ## usage
 
-If you are using ES6, it would look like this:
+If you are using ES6 in electron/nwjs, it would look like this:
 
 ```js
 import tinder from 'jstinder'
@@ -30,15 +30,14 @@ var tinder = require('jstinder')
 
 tinder.login()
   .then(function (me) {
-    tinder.auth(me.token, me.id)
+    return tinder.auth(me.token, me.id)
       .then(tinder.recommendations)
       .then(function (recommendations) {
-
-      }, function (err) {
-
+        // handle recommendations
       })
-  }, function (err) {
-
+  })
+  .catch(function (err) {
+    // handle err here
   })
 
 ```
